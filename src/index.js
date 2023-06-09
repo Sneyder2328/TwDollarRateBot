@@ -23,7 +23,7 @@ app.use(compression());
 // Use the express-basic-auth middleware to protect your routes.
 app.use(
   expressBasicAuth({
-    users: { [process.env.USERNAME]: process.env.PASSWORD },
+    users: { [`${process.env.BOT_USERNAME}`]: process.env.BOT_PASSWORD },
   })
 );
 
