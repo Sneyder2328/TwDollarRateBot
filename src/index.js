@@ -1,7 +1,7 @@
 // create basic express server
 const express = require("express");
 const compression = require("compression");
-const expressBasicAuth = require('express-basic-auth');
+const expressBasicAuth = require("express-basic-auth");
 
 const env = (process.env.NODE_ENV || "development").trim();
 
@@ -23,8 +23,7 @@ app.use(compression());
 // Use the express-basic-auth middleware to protect your routes.
 app.use(
   expressBasicAuth({
-    username: process.env.USERNAME,
-    password: process.env.PASSWORD,
+    users: { [process.env.USERNAME]: process.env.PASSWORD },
   })
 );
 
