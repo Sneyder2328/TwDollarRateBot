@@ -17,7 +17,7 @@ const rwClient = client.readWrite;
 async function tweetRates(rates) {
   try {
     // Use .tweet() method and pass the text you want to post
-    const text = `Actualización BCV || Fecha valor: ${rates.date}\n\n 1 Dolar (USD) = ${rates.USD} Bs.\n1 Euro (EUR) = ${rates.EUR} Bs. \n 1 Yuan (CNY) = ${rates.CNY} Bs.\n 1 Lira (TRY) = ${rates.TRY} Bs.\n1 Rublo (RUB) = ${rates.RUB} Bs.`;
+    const text = `Actualización BCV || Fecha valor: ${rates.date}\n\n1 Dolar (USD) = ${rates.USD} Bs.\n1 Euro (EUR) = ${rates.EUR} Bs. \n1 Yuan (CNY) = ${rates.CNY} Bs.\n1 Lira (TRY) = ${rates.TRY} Bs.\n1 Rublo (RUB) = ${rates.RUB} Bs.`;
     await rwClient.v2.tweet(text);
     return true;
   } catch (error) {
