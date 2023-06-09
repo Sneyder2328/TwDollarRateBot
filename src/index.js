@@ -1,10 +1,12 @@
 // create basic express server
 const express = require("express");
 const compression = require("compression");
-const env = (process.env.NODE_ENV || 'development').trim();
+const expressBasicAuth = require('express-basic-auth');
 
-if (env === 'development') {
-    require('dotenv').config();
+const env = (process.env.NODE_ENV || "development").trim();
+
+if (env === "development") {
+  require("dotenv").config();
 }
 
 const { router } = require("./routes/update_rates.js");
@@ -15,10 +17,20 @@ const port = process.env.PORT || 3000;
 
 app.set("PORT", port);
 
-// compress responses
+// Compress responses
 app.use(compression());
+
+// Use the express-basic-auth middleware to protect your routes.
+app.use(
+  expressBasicAuth({
+    username: process.env.USERNAME,
+    password: process.env.PASSWORD,
+  })
+);
+
+// Add router
 app.use("/", router);
 
 app.listen(port, () => {
-    console.log(`app running on port ${port}`);
+  console.log(`app running on port ${port}`);
 });
