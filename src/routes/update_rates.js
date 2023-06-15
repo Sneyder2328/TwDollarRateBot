@@ -1,12 +1,11 @@
 const { Router } = require("express");
-const { tweetRates } = require("../twbot/post_tweet.js");
-const { getRatesUpdated } = require("../scrapper/get_rates.js");
+const { postTweetEmitter, POST_TWEET_EVENT } = require("../events/post_tweet_emitter.js");
 
 const router = Router();
 
 router.post("/update_rates", async (_, res) => {
-  const rates = await getRatesUpdated();
-  return res.status(200).json({ success: await tweetRates(rates) });
+  postTweetEmitter.emit(POST_TWEET_EVENT);
+  return res.status(200).json({ message: "Posting tweet.." });
 });
 
 module.exports = { router };
