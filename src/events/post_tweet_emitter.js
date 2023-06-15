@@ -1,3 +1,4 @@
+const EventEmitter = require("events");
 const { getRatesUpdated } = require("../services/get_rates.js");
 const { tweetRates } = require("../twbot/post_tweet");
 
