@@ -8,8 +8,12 @@ const POST_TWEET_EVENT = "post_tweet";
 
 postTweetEmitter.on(POST_TWEET_EVENT, () => {
   setImmediate(async () => {
-    const rates = await getRatesUpdated();
-    await tweetRates(rates);
+    try {
+      const rates = await getRatesUpdated();
+      await tweetRates(rates);
+    } catch (error) {
+      console.log("POST_TWEET_EVENT error=", error);
+    }
   });
 });
 
